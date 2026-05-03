@@ -1,0 +1,49 @@
+{
+  "entities": {
+    "Alert": {
+      "title": "Alert",
+      "description": "A price alert set by a user for a specific asset.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The UID of the user who created the alert." },
+        "symbol": { "type": "string", "description": "The asset symbol (e.g., NIFTY 50, RELIANCE)." },
+        "condition": { "type": "string", "enum": ["above", "below"], "description": "The trigger condition." },
+        "targetPrice": { "type": "number", "description": "The price level that triggers the alert." },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "triggered": { "type": "boolean", "description": "Whether the alert has been triggered." },
+        "triggeredAt": { "type": "string", "format": "date-time", "description": "When the alert was last triggered." }
+      },
+      "required": ["userId", "symbol", "condition", "targetPrice", "createdAt", "triggered"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User specific settings and profile data.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "preferences": {
+          "type": "object",
+          "properties": {
+            "notificationsEnabled": { "type": "boolean" },
+            "audioEnabled": { "type": "boolean" }
+          }
+        }
+      }
+    }
+  },
+  "firestore": {
+    "alerts/{alertId}": {
+      "schema": "Alert",
+      "description": "User price alerts."
+    },
+    "users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Public user profile."
+    },
+    "users/{userId}/private/settings": {
+      "schema": "object",
+      "description": "Private user settings."
+    }
+  }
+}

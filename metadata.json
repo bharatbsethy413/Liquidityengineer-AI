@@ -1,0 +1,6 @@
+{
+  "name": "Liquidity Engineer AI",
+  "description": "Professional AI Trading Dashboard powered by SMC and Neural Synthesis by Bharat B Sethy. Real-time multi-asset intelligence and analytics.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": []
+}
